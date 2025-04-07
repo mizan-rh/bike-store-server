@@ -18,8 +18,10 @@
   "license": "ISC",
   "devDependencies": {
     "@eslint/js": "^9.17.0",
+    "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^22.10.2",
     "@typescript-eslint/eslint-plugin": "^8.18.2",
     "@typescript-eslint/parser": "^8.18.2",
@@ -47,6 +49,7 @@
     "argparse": "^2.0.1",
     "array-flatten": "^1.1.1",
     "balanced-match": "^1.0.2",
+    "bcrypt": "^5.1.1",
     "binary-extensions": "^2.3.0",
     "brace-expansion": "^1.1.11",
     "braces": "^3.0.3",
