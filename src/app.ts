@@ -1,32 +1,40 @@
+import cookieParser from "cookie-parser";
 import cors from "cors";
-import express, { Application, NextFunction, Request, Response } from "express";
-import { ordersRouter } from "./modules/orders/order.routes";
-import { ProductRouter } from "./modules/products/product.routes";
-
-
-
-
-import { UserRouter } from "./modules/user/user.routes";
+import express, { Application, Request, Response } from "express";
+import { StatusCodes } from "http-status-codes";
+import { globalErrorHandler } from "./modules/middlewares/gloabalErrorHandler";
+import router from "./routes";
 
 const app: Application = express();
-//persers
+
+// parser
+
+app.use(cookieParser());
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://front end live link .vercel.app",
+    ],
+    credentials: true,
+  })
+);
 
-//application routes
-app.use("/api/products", ProductRouter);
-app.use("/api/orders", ordersRouter);
-app.use("/api/users", userRouter);
+// application router
+// all route
+app.use("/api", router);
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Bike Store Server is on");
+app.get("/", (req, res) => {
+  res.json({ message: "Hello there, welcome!" });
 });
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  console.error(err.stack);
-  res.status(err.status || 500).json({
-    message: err.message || "Internal Server Error",
+app.use(globalErrorHandler);
+
+app.use("*", (req: Request, res: Response) => {
+  res.status(404).json({
     status: false,
+    StatusCode: StatusCodes.NOT_FOUND,
+    message: "Route not found",
   });
-  next();
 });
 export default app;
