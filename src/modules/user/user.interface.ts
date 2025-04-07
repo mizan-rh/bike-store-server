@@ -1,11 +1,11 @@
-// models/users/user.interface.ts
-
+//create a interface for user
 export interface IUser {
+  profileImage: string;
   name: string;
   email: string;
-  photo?: string | null;
-  age: number;
-  phone: number;
   password: string;
-  role: "customer" | "admin";
+  role?: "customer" | "admin";
+  isBlocked?: boolean;
+  address: string;
+  phone: string;
 }

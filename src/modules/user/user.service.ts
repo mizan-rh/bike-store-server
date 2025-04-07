@@ -1,30 +1,13 @@
-import { IUser } from "./user.interface";
-import { UserModel } from "./user.schema";
+import User from "./user.model";
 
-const createUser = async (payload: IUser): Promise<IUser> => {
-  const result = await UserModel.create(payload);
+const profileUpdate = async (
+  userId: string,
+  payload: Record<string, unknown>
+) => {
+  const result = await User.findByIdAndUpdate(userId, payload, { new: true });
   return result;
 };
-const getAllUser = async () => {
-  const result = await UserModel.find();
-  return result;
-};
-const getSingleUser = async (id: string) => {
-  const result = await UserModel.findById(id);
-  return result;
-};
-const updateUser = async (id: string, data: Partial<IUser>) => {
-  const result = await UserModel.findByIdAndUpdate(id, data, { new: true });
-  return result;
-};
-const deleteUser = async (id: string) => {
-  const result = await UserModel.findByIdAndDelete(id);
-  return result;
-};
+
 export const userService = {
-  createUser,
-  getAllUser,
-  getSingleUser,
-  updateUser,
-  deleteUser,
+  profileUpdate,
 };
