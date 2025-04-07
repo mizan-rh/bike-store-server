@@ -1,30 +1,30 @@
-// models/users/user.service.ts
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import { IUser } from "./user.interface";
-import { UserModel } from "./user.schemal";
+import { UserModel } from "./user.schema";
 
-export const userServices = {
-  registerUser: async (userData: IUser) => {
-    const result = await UserModel.create(userData);
-    return result;
-  },
-
-  loginUser: async (email: string, password: string) => {
-    const user = await UserModel.findOne({ email });
-    if (!user) throw new Error("User not found");
-
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) throw new Error("Invalid credentials");
-
-    const token = jwt.sign(
-      { id: user._id, role: user.role },
-      process.env.JWT_SECRET as string,
-      {
-        expiresIn: "7d",
-      }
-    );
-
-    return { token, user };
-  },
+const createUser = async (payload: IUser): Promise<IUser> => {
+  const result = await UserModel.create(payload);
+  return result;
+};
+const getAllUser = async () => {
+  const result = await UserModel.find();
+  return result;
+};
+const getSingleUser = async (id: string) => {
+  const result = await UserModel.findById(id);
+  return result;
+};
+const updateUser = async (id: string, data: Partial<IUser>) => {
+  const result = await UserModel.findByIdAndUpdate(id, data, { new: true });
+  return result;
+};
+const deleteUser = async (id: string) => {
+  const result = await UserModel.findByIdAndDelete(id);
+  return result;
+};
+export const userService = {
+  createUser,
+  getAllUser,
+  getSingleUser,
+  updateUser,
+  deleteUser,
 };
