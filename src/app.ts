@@ -2,7 +2,11 @@ import cors from "cors";
 import express, { Application, NextFunction, Request, Response } from "express";
 import { ordersRouter } from "./modules/orders/order.routes";
 import { ProductRouter } from "./modules/products/product.routes";
-import userRouter from "./modules/user/user.routes";
+
+
+
+
+import { UserRouter } from "./modules/user/user.routes";
 
 const app: Application = express();
 //persers
@@ -15,7 +19,7 @@ app.use("/api/orders", ordersRouter);
 app.use("/api/users", userRouter);
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
+  res.send("Bike Store Server is on");
 });
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   console.error(err.stack);
