@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import app from "./app";
-import ServerConfig from "./models/config";
+import ServerConfig from "./modules/config";
 
 async function main() {
   try {
