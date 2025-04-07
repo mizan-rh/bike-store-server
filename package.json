@@ -134,6 +134,7 @@
     "json-buffer": "^3.0.1",
     "json-schema-traverse": "^0.4.1",
     "json-stable-stringify-without-jsonify": "^1.0.1",
+    "jsonwebtoken": "^9.0.2",
     "kareem": "^2.6.3",
     "keyv": "^4.5.4",
     "levn": "^0.4.1",
@@ -232,7 +233,8 @@
     "wrappy": "^1.0.2",
     "xtend": "^4.0.2",
     "yn": "^3.1.1",
-    "yocto-queue": "^0.1.0"
+    "yocto-queue": "^0.1.0",
+    "zod": "^3.24.2"
   },
   "description": ""
 }
