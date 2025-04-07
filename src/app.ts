@@ -21,6 +21,6 @@ app.use("/api/products", ProductRouter);
 app.use("/api/orders", ordersRouter);
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
+  res.send("Bike Store Server is on");
 });
 export default app;
