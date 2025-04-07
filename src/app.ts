@@ -1,7 +1,8 @@
 import cors from "cors";
 import express, { Application, NextFunction, Request, Response } from "express";
-import { ordersRouter } from "./models/orders/order.routes";
-import { ProductRoutes } from "./models/products/product.routes";
+import { ordersRouter } from "./modules/orders/order.routes";
+import { ProductRouter } from "./modules/products/product.routes";
+import { UserRouter } from "./modules/user/user.routes";
 
 const app: Application = express();
 //persers
@@ -17,8 +18,9 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 });
 
 //application routes
-app.use("/api/products", ProductRoutes);
+app.use("/api/products", ProductRouter);
 app.use("/api/orders", ordersRouter);
+app.use("/api/users", UserRouter);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
