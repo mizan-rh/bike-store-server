@@ -1,19 +1,20 @@
-import { StatusCodes } from 'http-status-codes';
-import catchAsync from '../utils/catchAsync';
-import { adminService } from './admin.service';
-
+import { StatusCodes } from "http-status-codes";
+import catchAsync from "../utils/catchAsync";
+import { adminService } from "./admin.service";
 
 const blockUser = catchAsync(async (req, res) => {
   const userId = req.params.userId;
-  const body=req.body;
+  const body = req.body;
   // console.log(body)
   // console.log(userId,"admin user id")
-  const result= await adminService.blockUser(userId,body);
+  const result = await adminService.blockUser(userId, body);
   res.status(StatusCodes.OK).json({
     success: true,
-    message: 'User blocked successfully',
+    message: body.isBlocked
+      ? "User blocked successfully"
+      : "User unblocked successfully",
     statusCode: StatusCodes.OK,
-    data:result
+    data: result,
   });
 });
 const getUsers = catchAsync(async (req, res) => {
@@ -22,14 +23,14 @@ const getUsers = catchAsync(async (req, res) => {
   const result = await adminService.getUsers(queryData);
   res.status(StatusCodes.OK).json({
     success: true,
-    message: 'All users get successfully',
+    message: "All users get successfully",
     statusCode: StatusCodes.OK,
     data: result.result,
-    meta:result.meta
+    meta: result.meta,
   });
 });
 
 export const adminController = {
   blockUser,
-  getUsers
+  getUsers,
 };

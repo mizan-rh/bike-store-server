@@ -1,11 +1,27 @@
-import mongoose, { Document } from "mongoose";
+import { Types } from "mongoose";
 
-interface IOrder extends Document {
-  email: string;
-  product: mongoose.Types.ObjectId;
-  quantity: number;
+export interface IOrder {
+  user: Types.ObjectId;
+  products: {
+    product: Types.ObjectId;
+    quantity: number;
+  }[];
+  productDetails: {
+    name: string;
+    brand: string;
+    price: number;
+  };
   totalPrice: number;
-
-  isCanceled: boolean;
+  status: "Pending" | "Delivered" | "Cancelled";
+  transaction?: {
+    id?: string;
+    transactionStatus?: string;
+    bank_status?: string;
+    sp_code?: string;
+    sp_message?: string;
+    method?: string;
+    date_time?: string;
+  };
+  createdAt?: Date;
+  updatedAt?: Date;
 }
-export default IOrder;

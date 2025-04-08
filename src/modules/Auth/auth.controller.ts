@@ -8,7 +8,7 @@ import sendResponse from "../utils/sendResponse";
 import { authService } from "./auth.service";
 
 const login = catchAsync(async (req: Request, res: Response) => {
-  // console.log(req.body,"test login data req.body")
+  // console.log(req.body, "test login data req.body");
   const result = await authService.login(req.body);
   const { refreshToken, accessToken } = result;
 
@@ -39,8 +39,9 @@ const register = catchAsync(async (req, res) => {
 
 const refreshToken = catchAsync(async (req, res) => {
   const { refreshToken } = req.cookies;
+  // console.log(refreshToken, "controler result");
   const result = await authService.refreshToken(refreshToken, res);
-  // console.log(result,"controler result");
+
   sendResponse(res, {
     success: true,
     message: "Login successful",

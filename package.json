@@ -200,6 +200,7 @@
     "setprototypeof": "^1.2.0",
     "shebang-command": "^2.0.0",
     "shebang-regex": "^3.0.0",
+    "shurjopay": "^0.12.1",
     "side-channel": "^1.1.0",
     "side-channel-list": "^1.0.0",
     "side-channel-map": "^1.0.1",
