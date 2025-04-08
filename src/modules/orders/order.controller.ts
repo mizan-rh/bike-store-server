@@ -1,45 +1,59 @@
-import { Request, Response } from "express";
-import { orderServices } from "./order.service";
+import { StatusCodes } from "http-status-codes";
+import { TTokenResponse } from "../Auth/auth.interface";
+import catchAsync from "../utils/catchAsync";
+import { orderService } from "./order.service";
 
-const createOrders = async (req: Request, res: Response) => {
-  try {
-    const orderData = req?.body;
-    const result = await orderServices.createOrderFromDB(orderData);
-    res.status(200).json({
-      success: true,
-      message: "Order created successfully",
-      data: result,
-    });
-  } catch (err: any) {
-    res.status(400).send({
-      message: "Validation error",
-      success: true,
-      error: err.errorn || err.name || "Unknown error",
-      stack: err?.stack,
-    });
-  }
-};
-
-// calculate Revenue from Orders
-const calculateRevenue = async (req: Request, res: Response) => {
-  try {
-    const result = await orderServices.CalculateRevenueOrderFromDB();
-    res.status(200).json({
-      success: true,
-      message: "Revenue calculated successfully",
-      data: result,
-    });
-  } catch (err: any) {
-    res.status(400).send({
-      message: "validation faild",
-      success: false,
-      error: err.error || err.name || "UnKOnown error",
-      stack: err?.stack,
-    });
-  }
-};
+// create a controller for create o order
+const createOrder = catchAsync(async (req, res) => {
+  const user = req?.user as TTokenResponse;
+  const payload = req.body;
+  const result = await orderService.createOrder(user, payload, req.ip!);
+  // console.log(result,"result")
+  res.status(StatusCodes.OK).json({
+    success: true,
+    message: "Order create successfully",
+    statusCode: StatusCodes.OK,
+    data: result,
+  });
+});
+// get order
+const getOrders = catchAsync(async (req, res) => {
+  const user = req?.user as TTokenResponse;
+  const queryData = req?.query;
+  const result = await orderService.getOrders(user, queryData);
+  res.status(StatusCodes.OK).json({
+    success: true,
+    message: "Order get successfully",
+    statusCode: StatusCodes.OK,
+    data: result.result,
+    meta: result.meta,
+  });
+});
+// verify payment controller
+const verifyPayment = catchAsync(async (req, res) => {
+  const order_id = req?.body.order_id as string;
+  const result = await orderService.verifyPayment(order_id as string);
+  res.status(StatusCodes.OK).json({
+    success: true,
+    message: "verify order successfully",
+    statusCode: StatusCodes.OK,
+    data: result,
+  });
+});
+// create a controller for get total revenue
+const getTotalRevenue = catchAsync(async (req, res) => {
+  const result = await orderService.getTotalRevenue();
+  res.status(StatusCodes.OK).json({
+    success: true,
+    message: "verify order successfully",
+    statusCode: StatusCodes.OK,
+    data: result,
+  });
+});
 
 export const orderController = {
-  createOrders,
-  calculateRevenue,
+  createOrder,
+  getTotalRevenue,
+  getOrders,
+  verifyPayment,
 };

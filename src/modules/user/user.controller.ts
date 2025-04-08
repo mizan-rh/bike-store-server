@@ -1,26 +1,21 @@
-// models/users/user.controller.ts
-import { Request, Response } from "express";
-import { userServices } from "./user.service";
+import { StatusCodes } from 'http-status-codes';
+
+import { userService } from './user.service';
+import catchAsync from '../utils/catchAsync';
+import sendResponse from '../utils/sendResponse';
+
+const profileUpdate = catchAsync(async (req, res) => {
+  const userId = req?.user?.userId as string;
+  const payload = req.body;
+  const result = await userService.profileUpdate(userId, payload);
+  sendResponse(res, {
+    success: true,
+    message: 'Update profile Successful',
+    statusCode: StatusCodes.OK,
+    data: result,
+  });
+});
 
 export const userController = {
-  register: async (req: Request, res: Response) => {
-    try {
-      const user = await userServices.registerUser(req.body);
-      res
-        .status(201)
-        .json({ success: true, message: "User registered", data: user });
-    } catch (err: any) {
-      res.status(400).json({ success: false, message: err.message });
-    }
-  },
-
-  login: async (req: Request, res: Response) => {
-    try {
-      const { email, password } = req.body;
-      const { token, user } = await userServices.loginUser(email, password);
-      res.status(200).json({ success: true, token, user });
-    } catch (err: any) {
-      res.status(401).json({ success: false, message: err.message });
-    }
-  },
+  profileUpdate,
 };

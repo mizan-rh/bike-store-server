@@ -19,6 +19,7 @@
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@types/bcrypt": "^5.0.2",
+    "@types/cookie-parser": "^1.4.8",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.9",
@@ -67,6 +68,7 @@
     "content-disposition": "^0.5.4",
     "content-type": "^1.0.5",
     "cookie": "^0.7.1",
+    "cookie-parser": "^1.4.7",
     "cookie-signature": "^1.0.6",
     "create-require": "^1.1.1",
     "cross-spawn": "^7.0.6",
@@ -116,6 +118,7 @@
     "has-symbols": "^1.1.0",
     "hasown": "^2.0.2",
     "http-errors": "^2.0.0",
+    "http-status-codes": "^2.3.0",
     "iconv-lite": "^0.4.24",
     "ignore": "^5.3.2",
     "import-fresh": "^3.3.0",
@@ -133,6 +136,7 @@
     "json-buffer": "^3.0.1",
     "json-schema-traverse": "^0.4.1",
     "json-stable-stringify-without-jsonify": "^1.0.1",
+    "jsonwebtoken": "^9.0.2",
     "kareem": "^2.6.3",
     "keyv": "^4.5.4",
     "levn": "^0.4.1",
@@ -196,6 +200,7 @@
     "setprototypeof": "^1.2.0",
     "shebang-command": "^2.0.0",
     "shebang-regex": "^3.0.0",
+    "shurjopay": "^0.12.1",
     "side-channel": "^1.1.0",
     "side-channel-list": "^1.0.0",
     "side-channel-map": "^1.0.1",
@@ -231,7 +236,8 @@
     "wrappy": "^1.0.2",
     "xtend": "^4.0.2",
     "yn": "^3.1.1",
-    "yocto-queue": "^0.1.0"
+    "yocto-queue": "^0.1.0",
+    "zod": "^3.24.2"
   },
   "description": ""
 }

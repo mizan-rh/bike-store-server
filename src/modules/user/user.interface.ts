@@ -1,9 +1,11 @@
-// models/users/user.interface.ts
-import { Document } from "mongoose";
-
-export interface IUser extends Document {
+//create a interface for user
+export interface IUser {
+  profileImage: string;
   name: string;
   email: string;
   password: string;
-  role: "customer" | "admin";
+  role?: "customer" | "admin";
+  isBlocked?: boolean;
+  address: string;
+  phone: string;
 }
