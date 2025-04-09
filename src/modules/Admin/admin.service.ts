@@ -1,6 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import QueryBuilder from "../../builder/queryBuilder";
-import AppError from "../errors/AppError";
+import AppError from "../errors/AppErrors";
 import User from "../user/user.model";
 
 const blockUser = async (userId: string, payload: { isBlocked: boolean }) => {

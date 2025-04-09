@@ -6,7 +6,7 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import config from "../../config";
 
 import { TUserRole } from "../Auth/auth.validation";
-import AppError from "../errors/AppError";
+import AppError from "../errors/AppErrors";
 import User from "../user/user.model";
 import catchAsync from "../utils/catchAsync";
 

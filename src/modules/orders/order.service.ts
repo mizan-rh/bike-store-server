@@ -5,7 +5,7 @@ import { Types } from "mongoose";
 import QueryBuilder from "../../builder/queryBuilder";
 import { TTokenResponse } from "../Auth/auth.interface";
 import Bike from "../bikes/bike.model";
-import AppError from "../errors/AppError";
+import AppError from "../errors/AppErrors";
 import User from "../user/user.model";
 import Order from "./order.model";
 import { orderUtils } from "./order.utils";

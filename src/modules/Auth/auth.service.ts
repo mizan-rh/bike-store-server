@@ -6,7 +6,7 @@ import { StatusCodes } from "http-status-codes";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { Types } from "mongoose";
 import config from "../../config";
-import AppError from "../errors/AppError";
+import AppError from "../errors/AppErrors";
 import { IUser } from "../user/user.interface";
 import User from "../user/user.model";
 import { comparePassword } from "../utils/comparePassword";
