@@ -15,7 +15,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://front end live link .vercel.app",
+      "https://bike-store-server-opal.vercel.app",
     ],
     credentials: true,
   })
